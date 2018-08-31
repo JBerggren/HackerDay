@@ -1,10 +1,11 @@
 "use strict";
 
+//var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:5001/chatHub").build();
 var connection = new signalR.HubConnectionBuilder().withUrl("https://appendhouse.contentowassum.se/chat/backend/chatHub").build();
 
-connection.on("ReceiveMessage", function (user, message) {
+connection.on("ReceiveMessage", function (time, user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var date = new Date();
+    var date = new Date(time);
 
     var encodedMsg = user + " (" + date.getHours() + ":" + date.getMinutes() + "): " + msg;
     var li = document.createElement("li");
