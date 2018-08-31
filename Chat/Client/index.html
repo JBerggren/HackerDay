@@ -6,32 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                User..........<input type="text" id="userInput" />
-                <br /> Message...
-                <input type="text" id="messageInput" />
-                <input type="button" id="sendButton" value="Send Message" />
+    <section class="section">
+        <div class="content">
+            <input class="input" type="text" id="userInput" placeholder="Name..." />
+        </div>
+        <div class="content">
+            <div class="content">
+                <textarea class="textarea" rows="3" placeholder="Message..." id="messageInput"></textarea>
+            </div>
+            <div class="is-clearfix">
+                <input type="button" id="sendButton" class="button is-primary is-pulled-right" value="Send" />
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <hr />
-            </div>
+        <hr />
+    </section>
+    <section>
+        <div class="content">
+            <ul id="messagesList"></ul>
         </div>
-        <div class="row">
-            <div class="col-6">&nbsp;</div>
-            <div class="col-6">
-                <ul id="messagesList"></ul>
-            </div>
-        </div>
-    </div>
+    </section>
     <script src="lib/signalr.js"></script>
     <script src="js/chat.js"></script>
 </body>
