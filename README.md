@@ -15,3 +15,7 @@ Använde https://bulma.io för grund style och bakgrund från https://uigradient
 
 Steg 3:
 Gjorde den till PWA så den kan installeras som app i IOS och Android. Hadlar om att länka in manifest.json och registrera en serviceworker. För att lägga till på IOS behöver man öppna siten i Safari
+
+vNext
+Push notifications https://developers.google.com/web/fundamentals/codelabs/push-notifications/  
+Offline mode https://developers.google.com/web/fundamentals/codelabs/offline/
