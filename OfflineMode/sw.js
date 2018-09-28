@@ -1,22 +1,8 @@
-var CACHE_NAME = 'offline-cache';
-var urlsToCache = [
-    '/content/cat.jpg'
-];
-
-//This does not do anything right now except installing itself
-
 self.addEventListener('install', function (event) {
-    // Perform install steps
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function (cache) {
-                console.log('Opened cache');
-                //return cache.addAll(urlsToCache);
-            })
-    );
+    //We dont do anything here right now
 });
 
-/* Work from cache */
+/* Get from cache or fetch from network */
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request)
@@ -25,7 +11,6 @@ self.addEventListener('fetch', function (event) {
                 if (response) {
                     return response;
                 }
-                console.log("No match, do we even go here?");
                 return fetch(event.request);
             })
     );

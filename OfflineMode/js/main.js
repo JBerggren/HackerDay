@@ -1,11 +1,23 @@
-document.getElementById("loadButton").addEventListener("click",()=>{
+var CAT_PATH = "content/cat.jpg";
+
+document.getElementById("loadButton").addEventListener("click", () => {
     var el = document.getElementById("contentHolder");
     var img = document.createElement("IMG");
-    img.src="content/cat.jpg";
-    el.innerHTML="";
+    img.src = CAT_PATH;
+    el.innerHTML = "";
     el.appendChild(img);
-    
 });
+
+document.getElementById("addToCache").addEventListener("click", () => {
+    caches.open("custom-cache").then(cache => {
+        cache.add(CAT_PATH);
+    });
+});
+
+document.getElementById("clearCache").addEventListener("click", () => {
+    caches.delete("custom-cache");
+});
+
 
 //Install Service worker (right now just to fill the criterias for auto suggest Web app install https://developers.google.com/web/fundamentals/app-install-banners/#criteria)
 if ('serviceWorker' in navigator) {
