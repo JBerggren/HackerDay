@@ -1,12 +1,13 @@
 var CAT_PATH = "content/cat.jpg";
 
-document.getElementById("loadButton").addEventListener("click", () => {
-    var el = document.getElementById("contentHolder");
-    var img = document.createElement("IMG");
-    img.src = CAT_PATH;
-    el.innerHTML = "";
-    el.appendChild(img);
-});
+// document.getElementById("loadButton").addEventListener("click", () => {
+//     var el = document.getElementById("contentHolder");
+//     var img = document.createElement("IMG");
+//     el.innerHTML ="";
+
+//     img.src = CAT_PATH;
+//     el.appendChild(img);
+// });
 
 document.getElementById("addToCache").addEventListener("click", () => {
     caches.open("custom-cache").then(cache => {
