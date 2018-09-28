@@ -9,15 +9,24 @@ var CAT_PATH = "content/cat.jpg";
 //     el.appendChild(img);
 // });
 
+navigator.storage.estimate().then(({ usage, quota }) => {
+    var el = document.getElementById("contentHolder");
+    el.innerText = `Using ${usage} bytes out of ${Math.floor(quota/1024/1024)} MB.`;
+}).catch(error => {
+    console.error('Loading storage estimate failed:');
+    console.log(error.stack);
+});
+
 document.getElementById("addToCache").addEventListener("click", () => {
     caches.open("custom-cache").then(cache => {
         cache.add(CAT_PATH);
+        cache.add("/content/wb.mp4");
         cache.addAll([
-        "/",
-        "/sw.js",
-        "/index.html",
-        "/js/main.js",
-        "/styles/main.css"]);
+            "/",
+            "/sw.js",
+            "/index.html",
+            "/js/main.js",
+            "/styles/main.css"]);
     });
 });
 
