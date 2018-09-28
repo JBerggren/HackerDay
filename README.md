@@ -1,5 +1,9 @@
 # HackerDay
 
+## 2018-09-28
+Offline  
+Lekte med service workers och hur man kan spara saker i cachen för prestanda eller offline möjligheter. Man har rätt mycket utrymme att leka med. Datorn påstår att jag har 30 GB tillgängligt och mobilen 1.6 GB.
+
 ## 2018-08-31
 Chat  
 Dotnet create webapi för att skapa backend  
