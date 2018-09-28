@@ -12,11 +12,18 @@ var CAT_PATH = "content/cat.jpg";
 document.getElementById("addToCache").addEventListener("click", () => {
     caches.open("custom-cache").then(cache => {
         cache.add(CAT_PATH);
+        cache.addAll([
+        "/",
+        "/sw.js",
+        "/index.html",
+        "/js/main.js",
+        "/styles/main.css"]);
     });
 });
 
 document.getElementById("clearCache").addEventListener("click", () => {
     caches.delete("custom-cache");
+    caches.delete("OFFLINE_APP");
 });
 
 
