@@ -1,3 +1,12 @@
+document.getElementById("loadButton").addEventListener("click",()=>{
+    var el = document.getElementById("contentHolder");
+    var img = document.createElement("IMG");
+    img.src="content/cat.jpg";
+    el.innerHTML="";
+    el.appendChild(img);
+    
+});
+
 //Install Service worker (right now just to fill the criterias for auto suggest Web app install https://developers.google.com/web/fundamentals/app-install-banners/#criteria)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
