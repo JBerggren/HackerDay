@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: { lat: -25.363882, lng: 131.044922 }
+            });
+
+            map.addListener('click', function (e) {
+                console.log("Panning to ", e.latLng);
+                placeMarkerAndPanTo(e.latLng, map);
+            });
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log("I am located at:", position);
+                var pos = {lat:position.coords.latitude,lng:position.coords.longitude};
+                placeMarkerAndPanTo(pos,map);
+                //map.panTo(post);
+                
+            },null,{enableHighAccuracy:true});
+        }
+
+        function placeMarkerAndPanTo(latLng, map) {
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map
+            });
+            map.panTo(latLng);
+        }
+        //Get position when it changes
+/*
+        navigator.geolocation.watchPosition(function (position) {
+            console.log(“I am now located at: “ + position.coords.latitude + “, “ + position.coords.longitude);
+          });
+
+          */
+
+          calculateDistance = function(lat1, lon1, lat2, lon2) {
+            var R, a, c, d, dLat, dLon;
+            R = 6371;
+            dLat = (lat2 - lat1).toRad();
+            dLon = (lon2 - lon1).toRad();
+            a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            d = R * c;
+            return d;
+          };
+          
+          Number.prototype.toRad = function() {
+            return this * Math.PI / 180;
+          };
+    </script>
+</head>
+
+<body>
+    <div id="map"></div>
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRP5GmQtwbAmpplgbECRDdJXvWvIwdMVg&callback=initMap">
+    </script>
+</body>
+
+</html>
