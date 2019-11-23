@@ -5,16 +5,12 @@ function initMap() {
         center: { lat: -25.363882, lng: 131.044922 }
     });
 
-    map.addListener('click', function (e) {
-        console.log("Panning to ", e.latLng);
-        placeMarkerAndPanTo(e.latLng, map);
-    });
+   
 
     navigator.geolocation.getCurrentPosition(function (position) {
         console.log("I am located at:", position);
         var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
-        placeMarkerAndPanTo(pos, map);
-        //map.panTo(post);
+        map.panTo(pos);
 
     }, null, { enableHighAccuracy: true });
 
@@ -35,11 +31,13 @@ function loadVoiData(map){
         return result.json();
     }).then(data=>{
         for(var i=0;i < data.length;i++){
-            var lat = data[i].location[0];
-            var lng = data[i].location[1];
+            var it = data[i];
+            var lat = it.location[0];
+            var lng = it.location[1];
             var marker = new google.maps.Marker({ //Enough just creating a marker
                 position: {lat,lng},
-                map: map
+                map: map,
+                title: `${it.short}: ${it.battery}% ${it.status}, ${it.updated}`
             });
         }
     });
