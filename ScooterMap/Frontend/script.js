@@ -17,6 +17,8 @@ function initMap() {
         //map.panTo(post);
 
     }, null, { enableHighAccuracy: true });
+
+    loadVoiData(map);
 }
 
 function placeMarkerAndPanTo(latLng, map) {
@@ -24,8 +26,23 @@ function placeMarkerAndPanTo(latLng, map) {
         position: latLng,
         map: map
     });
-    //https://api.voiapp.io/v1/vehicle/status/ready?lat=59.329323&lng=18.068581
+
     map.panTo(latLng);
+}
+
+function loadVoiData(map){
+    fetch("https://local.learnify.se:5001/voi").then(result=>{
+        return result.json();
+    }).then(data=>{
+        for(var i=0;i < data.length;i++){
+            var lat = data[i].location[0];
+            var lng = data[i].location[1];
+            var marker = new google.maps.Marker({ //Enough just creating a marker
+                position: {lat,lng},
+                map: map
+            });
+        }
+    });
 }
 
 calculateDistance = function (lat1, lon1, lat2, lon2) {
